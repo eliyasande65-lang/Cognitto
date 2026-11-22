@@ -78,7 +78,7 @@ class MainActivity : Activity() {
                 pendingSave = false
                 web.evaluateJavascript("window.fileSaved()", null)
             } else if (requestCode == 42) {
-                val content = contentResolver.openInputStream(uri)?.bufferedReader()?.use(BufferedReader::readText) ?: ""
+                val content = contentResolver.openInputStream(uri)?.bufferedReader()?.use { it.readText() } ?: ""
                 val name = queryName(uri)
                 val escaped = org.json.JSONObject.quote(content)
                 val escapedName = org.json.JSONObject.quote(name)
